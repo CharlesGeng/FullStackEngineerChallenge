@@ -62,13 +62,25 @@ truncate table Users
 go
 
 INSERT INTO [dbo].[Users] ([UserName] ,[EmailAddress] ,[DepartmentName] ,[IsAdmin])
-     VALUES ( 'Alice' ,'a@mail.mail' ,'HR', 1) 
+     VALUES ( 'Alice' ,'a@mail.mail' ,'Human Resource', 1) 
 
 INSERT INTO [dbo].[Users] ([UserName] ,[EmailAddress] ,[DepartmentName] ,[IsAdmin])
-     VALUES ( 'Bob' ,'b@mail.mail' ,'SD', 0) 
+     VALUES ( 'Bob' ,'b@mail.mail' ,'Software Dev', 0) 
 
 INSERT INTO [dbo].[Users] ([UserName] ,[EmailAddress] ,[DepartmentName] ,[IsAdmin])
-     VALUES ( 'Chris' ,'c@mail.mail' ,'SD', 0) 
+     VALUES ( 'Chris' ,'c@mail.mail' ,'Software Dev', 0) 
 
 INSERT INTO [dbo].[Users] ([UserName] ,[EmailAddress] ,[DepartmentName] ,[IsAdmin])
-     VALUES ( 'David' ,'d@mail.mail' ,'SD', 0) 
+     VALUES ( 'David' ,'d@mail.mail' ,'Software Dev', 0) 
+
+	INSERT INTO [dbo].[Users] ([UserName] ,[EmailAddress] ,[DepartmentName] ,[IsAdmin])
+     VALUES ( 'Alice1' ,'a1@mail.mail' ,'Human Resource', 1) 
+
+INSERT INTO [dbo].[Users] ([UserName] ,[EmailAddress] ,[DepartmentName] ,[IsAdmin])
+     VALUES ( 'Bob1' ,'b1@mail.mail' ,'Software Dev', 0) 
+
+INSERT INTO [dbo].[Users] ([UserName] ,[EmailAddress] ,[DepartmentName] ,[IsAdmin])
+     VALUES ( 'Chris1' ,'c1@mail.mail' ,'Software Dev', 0) 
+
+INSERT INTO [dbo].[Users] ([UserName] ,[EmailAddress] ,[DepartmentName] ,[IsAdmin])
+     VALUES ( 'David1' ,'d1@mail.mail' ,'Software Dev', 0) 
