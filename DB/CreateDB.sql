@@ -58,6 +58,9 @@ GO
 USE [HR_ReviewDB]
 GO
 
+truncate table Users
+go
+
 INSERT INTO [dbo].[Users] ([UserName] ,[EmailAddress] ,[DepartmentName] ,[IsAdmin])
      VALUES ( 'Alice' ,'a@mail.mail' ,'HR', 1) 
 
