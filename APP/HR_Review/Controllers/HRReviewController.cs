@@ -8,45 +8,68 @@ namespace HR_Review.Controllers
     {
         private HRDataAccessLayer accessor = new HRDataAccessLayer();
 
-        // GET: HRReviewController
         [HttpGet]
         [Route("api/Users/Index")]
-        public IEnumerable<Users> Index()
+        public IEnumerable<Users> UserIndex()
         {
             return accessor.GetAllUsers();
         }
 
-        // GET: HRReviewController/Details/5
         [HttpGet]
         [Route("api/Users/Details/{id}")]
-        public Users Details(int id)
+        public Users UserDetails(int id)
         {
             return accessor.GetUserData(id);
         }
 
-        // GET: HRReviewController/Create
         [HttpPost]
         [Route("api/Users/Create")]
-        public int Create(Users user)
+        public int CreateUser(Users user)
         {
             return accessor.AddUser(user);
         }
 
 
-        // GET: HRReviewController/Edit
         [HttpPut]
         [Route("api/Users/Edit")]
-        public int Edit(Users user)
+        public int EditUser(Users user)
         {
             return accessor.UpdateUser(user);
         }
 
-        // GET: HRReviewController/Delete/5
         [HttpDelete]
         [Route("api/Users/Delete/{id}")]
-        public int Delete(int id)
+        public int DeleteUser(int id)
         {
             return accessor.DeleteUser(id);
+        }
+
+        [HttpGet]
+        [Route("api/Performance")]
+        public IEnumerable<VPerformance> PerformancesIndex()
+        {
+            return accessor.GetPerformances();
+        }
+
+        [HttpGet]
+        [Route("api/Performance/{reviewerId}")]
+        public IEnumerable<VPerformance> Performances(int reviewerId)
+        {
+            return accessor.GetPerformances(reviewerId);
+        }
+
+        [HttpPost]
+        [Route("api/Performance/Create")]
+        public int CreatePerformance(PerformanceReview p)
+        {
+            return accessor.AddPerformance(p);
+        }
+
+        [HttpPut]
+        [Route("api/Performance/Edit")]
+        public int EditPerformance(PerformanceReview p)
+        {
+            return accessor.UpdatePerformance(p);
         }
     }
 }

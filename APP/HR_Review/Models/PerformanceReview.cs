@@ -10,11 +10,14 @@ namespace HR_Review.Models
     public partial class PerformanceReview
     {
         public int Id { get; set; }
-        public string UserName { get; set; }
-        public string Reviewer { get; set; }
+        public int UserId { get; set; }
+        public int ReviewerId { get; set; }
         public string Performance { get; set; }
         public bool IsReviewed { get; set; }
-        public DateTime? AssignedDate { get; set; }
-        public DateTime? ReviewedDate { get; set; }
+        public DateTime? AssignDate { get; set; }
+        public DateTime? ReviewDate { get; set; }
+
+        public virtual Users Reviewer { get; set; }
+        public virtual Users User { get; set; }
     }
 }

@@ -17,10 +17,8 @@ export class FetchUsers extends Component {
 
   handleEdit = (id) => {
     this.props.history.push("/users/edit/" + id);
-    console.log("edit clicked")
   }
   handleDelete = (id) => {
-    console.log("delete clicked")
 
     if (!window.confirm("Do you want to delete employee with Id: " + id))
       return;
@@ -28,7 +26,6 @@ export class FetchUsers extends Component {
       fetch('api/Users/Delete/' + id, {
         method: 'delete'
       }).then(data => {
-        console.log("Finished Delete.")
         this.setState(
           {
             Users: this.state.Users.filter((usr) => {
@@ -46,7 +43,6 @@ export class FetchUsers extends Component {
       )
     }
     else {
-      console.log(this.state.Users);
       return (
         <div className="text-center">
           <table className='table table-striped table-sm'>

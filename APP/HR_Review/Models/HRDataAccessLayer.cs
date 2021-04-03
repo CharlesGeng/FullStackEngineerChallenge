@@ -84,5 +84,60 @@ namespace HR_Review.Models
             }
         }
 
+        public IEnumerable<VPerformance> GetPerformances()
+        {
+            try
+            {
+                var performanceList = this.db.VPerformance.FromSqlRaw("select * from vPerformance").ToList();
+                return performanceList;
+            }
+            catch
+            {
+                throw;
+            }
+        }
+
+        public IEnumerable<VPerformance> GetPerformances(int reviewerId)
+        {
+            try
+            {
+                var performanceList = this.db.VPerformance.FromSqlRaw(string.Format("select * from vPerformance where ReviewerId={0}", reviewerId)).ToList();
+                return performanceList;
+            }
+            catch
+            {
+                throw;
+            }
+        }
+
+        public int AddPerformance(PerformanceReview performance)
+        {
+            try
+            {
+                db.PerformanceReview.Add(performance);
+                db.SaveChanges();
+                return 1;
+            }
+            catch
+            {
+                throw;
+            }
+        }
+
+        public int UpdatePerformance(PerformanceReview p)
+        {
+            try
+            {
+                db.Entry(p).State = EntityState.Modified;
+                db.SaveChanges();
+
+                return 1;
+            }
+            catch
+            {
+                throw;
+            }
+        }
+
     }
 }

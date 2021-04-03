@@ -21,6 +21,7 @@ namespace HR_Review.Models
 
         public virtual DbSet<PerformanceReview> PerformanceReview { get; set; }
         public virtual DbSet<Users> Users { get; set; }
+        public virtual DbSet<VPerformance> VPerformance { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
@@ -35,25 +36,27 @@ namespace HR_Review.Models
         {
             modelBuilder.Entity<PerformanceReview>(entity =>
             {
-                entity.Property(e => e.Id)
-                    .HasColumnName("id")
-                    .ValueGeneratedNever();
+                entity.Property(e => e.Id).HasColumnName("id");
 
-                entity.Property(e => e.AssignedDate).HasColumnType("datetime");
+                entity.Property(e => e.AssignDate).HasColumnType("datetime");
 
                 entity.Property(e => e.Performance)
                     .IsRequired()
                     .HasMaxLength(50);
 
-                entity.Property(e => e.ReviewedDate).HasColumnType("datetime");
+                entity.Property(e => e.ReviewDate).HasColumnType("datetime");
 
-                entity.Property(e => e.Reviewer)
-                    .IsRequired()
-                    .HasMaxLength(50);
+                entity.HasOne(d => d.Reviewer)
+                    .WithMany(p => p.PerformanceReviewReviewer)
+                    .HasForeignKey(d => d.ReviewerId)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("FK_PerformanceReview_ReviewerId");
 
-                entity.Property(e => e.UserName)
-                    .IsRequired()
-                    .HasMaxLength(50);
+                entity.HasOne(d => d.User)
+                    .WithMany(p => p.PerformanceReviewUser)
+                    .HasForeignKey(d => d.UserId)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("FK_PerformanceReview_UserId");
             });
 
             modelBuilder.Entity<Users>(entity =>
@@ -67,6 +70,18 @@ namespace HR_Review.Models
                 entity.Property(e => e.UserName)
                     .IsRequired()
                     .HasMaxLength(50);
+            });
+
+            modelBuilder.Entity<VPerformance>(entity =>
+            {
+                entity.HasNoKey();
+                entity.Property(e => e.id).HasColumnName("id");
+                entity.Property(e => e.ReviewerId).HasColumnName("ReviewerId");
+                entity.Property(e => e.ReviewerName).HasColumnName("ReviewerName");
+                entity.Property(e => e.UserName).HasColumnName("UserName");
+                entity.Property(e => e.Performance).HasColumnName("Performance");
+                entity.Property(e => e.AssignDate).HasColumnName("AssignDate");
+                entity.Property(e => e.ReviewDate).HasColumnName("ReviewDate");
             });
 
             OnModelCreatingPartial(modelBuilder);
