@@ -5,6 +5,7 @@ import { Home } from './components/Home';
 import { FetchUsers } from './components/FetchUsers';
 import { FetchPerformances } from './components/FetchPerformances';
 import { AddUser } from './components/AddUser';
+import { AddPerformance } from './components/AddPerformance';
 import { ReviewUser } from './components/ReviewUser';
 import AuthorizeRoute from './components/api-authorization/AuthorizeRoute';
 import ApiAuthorizationRoutes from './components/api-authorization/ApiAuthorizationRoutes';
@@ -25,6 +26,7 @@ export default class App extends Component {
         <Route path='/users/edit/:id' component={AddUser} />
         <Route path='/ReviewUser' component={ReviewUser} />
         <Route path='/add-user' component={AddUser} />
+        <Route path='/add-performance' component={AddPerformance} />
       </Layout>
     );
   }

@@ -31,7 +31,7 @@ export class AddUser extends React.Component {
     let contents = this.state.loading
       ? React.createElement("p", null,
         React.createElement("em", null, "Loading..."))
-      : this.renderCreateForm(this.state.cityList);
+      : this.renderCreateForm();
     return React.createElement("div", null,
       React.createElement("h1", null, this.state.title),
       React.createElement("h3", null, "User"),
@@ -70,7 +70,7 @@ export class AddUser extends React.Component {
     this.props.history.push("/fetch-users");
   }
   // Returns the HTML Form to the render() method.
-  renderCreateForm(cityList) {
+  renderCreateForm() {
     return (
       <form onSubmit={this.handleSave} >
         <div className="form-group row" >

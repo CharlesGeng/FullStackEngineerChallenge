@@ -1,12 +1,7 @@
 import React, { Component } from 'react'
+import { typeOfPerformance } from '../constants/PerformanceType';
 
-const typeOfPerformance = [
-  "",
-  "Excellent",
-  "Good",
-  "Satisfactory",
-  "Below Average"
-]
+
 
 const ISREVIEWED = true;
 
