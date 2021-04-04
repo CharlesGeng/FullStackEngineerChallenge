@@ -12,7 +12,7 @@ namespace HR_Review.Models
         public int Id { get; set; }
         public int UserId { get; set; }
         public int ReviewerId { get; set; }
-        public string Performance { get; set; }
+        public virtual string Performance { get; set; }
         public bool IsReviewed { get; set; }
         public DateTime? AssignDate { get; set; }
         public DateTime? ReviewDate { get; set; }

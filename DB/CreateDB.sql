@@ -95,9 +95,9 @@ SELECT      p.id as id,
 			u.UserName as [UserName],
 			r.UserName as [ReviewerName],
 			p.Performance as Performance,
-			p.IsReviewed as Reviewed,
 			p.AssignDate as AssignDate,
-			p.ReviewDate as ReviewDate
+			p.ReviewDate as ReviewDate,
+			p.IsReviewed as IsReviewed
 FROM dbo.PerformanceReview p INNER JOIN
      dbo.Users u ON p.UserId = u.id 
      inner join dbo.Users r on

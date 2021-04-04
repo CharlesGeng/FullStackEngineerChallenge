@@ -101,7 +101,7 @@ namespace HR_Review.Models
         {
             try
             {
-                var performanceList = this.db.VPerformance.FromSqlRaw(string.Format("select * from vPerformance where ReviewerId={0}", reviewerId)).ToList();
+                var performanceList = this.db.VPerformance.FromSqlRaw(string.Format("select * from vPerformance where ReviewerId={0} and isReviewed = 0", reviewerId)).ToList();
                 return performanceList;
             }
             catch
@@ -128,9 +128,10 @@ namespace HR_Review.Models
         {
             try
             {
-                db.Entry(p).State = EntityState.Modified;
+                //db.Entry(p).State = EntityState.Modified;
+                db.Entry(p).Property(prop => prop.Performance).IsModified = true;
+                db.Entry(p).Property(prop => prop.IsReviewed).IsModified = true;
                 db.SaveChanges();
-
                 return 1;
             }
             catch

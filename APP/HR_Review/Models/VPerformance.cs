@@ -13,8 +13,9 @@ namespace HR_Review.Models
         public int ReviewerId { get; }
         public string UserName{ get; }
         public string ReviewerName { get; }
-        public string Performance { get; }
-        public DateTime AssignDate{ get;  }
-        public DateTime ReviewDate{ get;  }
+        public virtual string Performance { get; }
+        public DateTime? AssignDate{ get;  }
+        public DateTime? ReviewDate{ get;  }
+        public bool IsReviewed{ get;  }
     }
 }
