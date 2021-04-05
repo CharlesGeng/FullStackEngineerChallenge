@@ -21,11 +21,11 @@ export default class App extends Component {
       <Layout>
         <Route exact path='/' component={Home} />
         <Route path='/fetch-users' component={FetchUsers} />
-        <Route path='/fetch-performances' component={FetchPerformances} />
         <Route path={ApplicationPaths.ApiAuthorizationPrefix} component={ApiAuthorizationRoutes} />
-        <Route path='/users/edit/:id' component={AddUser} />
-        <Route path='/review-user' component={ReviewUser} />
-        <Route path='/add-user' component={AddUser} />
+        <AuthorizeRoute path='/fetch-performances' component={FetchPerformances} />
+        <AuthorizeRoute path='/users/edit/:id' component={AddUser} />
+        <AuthorizeRoute path='/review-user' component={ReviewUser} />
+        <AuthorizeRoute path='/add-user' component={AddUser} />
         <Route path='/add-performance' component={AddPerformance} />
       </Layout>
     );

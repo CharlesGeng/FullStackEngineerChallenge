@@ -1,5 +1,6 @@
 using HR_Review.Data;
 using HR_Review.Models;
+using IdentityServer4.Services;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -35,6 +36,8 @@ namespace HR_Review
                     Configuration.GetConnectionString("DefaultConnection")));
 
             services.AddDefaultIdentity<ApplicationUser>(options => options.SignIn.RequireConfirmedAccount = true)
+                .AddRoles<IdentityRole>()
+                .AddRoleManager<RoleManager<IdentityRole>>()
                 .AddEntityFrameworkStores<ApplicationDbContext>();
 
             services.AddIdentityServer()
@@ -43,6 +46,7 @@ namespace HR_Review
             services.AddAuthentication()
                 .AddIdentityServerJwt();
 
+            services.AddTransient<IProfileService, ProfileService>();
             services.AddControllersWithViews();
             services.AddRazorPages();
 

@@ -48,10 +48,17 @@ export class AddPerformance extends React.Component {
   }
   // This will handle the submit form event.
   handleSave = (event) => {
+    const performance = this.state.performance;
     event.preventDefault();
+
+    if (performance.userId === performance.reviewerId) {
+      window.confirm("User Name and Reviewer Name are same!");
+      return;
+    }
+
     const data = new FormData();
-    data.append("userId", this.state.performance.userId);
-    data.append("reviewerId", this.state.performance.reviewerId);
+    data.append("userId", performance.userId);
+    data.append("reviewerId", performance.reviewerId);
     data.append("isReviewed", false);
     console.log(event);
     fetch('api/Performance/Create', {

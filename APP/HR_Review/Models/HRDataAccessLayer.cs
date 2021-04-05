@@ -120,8 +120,9 @@ namespace HR_Review.Models
             }
             catch
             {
-                throw;
+                
             }
+            return 0;
         }
 
         public int UpdatePerformance(PerformanceReview p)

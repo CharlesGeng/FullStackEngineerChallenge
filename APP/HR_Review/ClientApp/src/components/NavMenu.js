@@ -3,6 +3,7 @@ import { Collapse, Container, Navbar, NavbarBrand, NavbarToggler, NavItem, NavLi
 import { Link } from 'react-router-dom';
 import { LoginMenu } from './api-authorization/LoginMenu';
 import './NavMenu.css';
+import authService from './api-authorization/AuthorizeService';
 
 export class NavMenu extends Component {
   static displayName = NavMenu.name;
@@ -12,8 +13,27 @@ export class NavMenu extends Component {
 
     this.toggleNavbar = this.toggleNavbar.bind(this);
     this.state = {
-      collapsed: true
+      collapsed: true,
+      isAuthenticated: false,
+      role: null
     };
+  }
+
+  componentWillUnmount() {
+    authService.unsubscribe(this._subscription);
+  }
+
+  componentDidMount() {
+    this._subscription = authService.subscribe(() => this.poplulateState());
+    this.poplulateState();
+  }
+
+  async poplulateState() {
+    const [isAuthenticated, user] = await Promise.all([authService.isAuthenticated(), authService.getUser()])
+    this.setState({
+      isAuthenticated,
+      role: user && user.role
+    });
   }
 
   toggleNavbar() {
@@ -23,6 +43,8 @@ export class NavMenu extends Component {
   }
 
   render() {
+    const role = this.state.role;
+    console.log(role);
     return (
       <header>
         <Navbar className="navbar-expand-sm navbar-toggleable-sm ng-white border-bottom box-shadow mb-3" light>
@@ -34,15 +56,28 @@ export class NavMenu extends Component {
                 <NavItem>
                   <NavLink tag={Link} className="text-dark" to="/">Home</NavLink>
                 </NavItem>
+                {role && role.includes("Admin") ?
+                  <>
+                    <NavItem>
+                      <NavLink tag={Link} className="text-dark" to="/fetch-performances">Performances</NavLink>
+                    </NavItem>
+                    <NavItem>
+                      <NavLink tag={Link} className="text-dark" to="/fetch-users">Users</NavLink>
+                    </NavItem>
+                  </>
+                  : null}
+
+                {role && role.includes("User") ?
+                  <span>
+                    <NavItem>
+                      <NavLink tag={Link} className="text-dark" to="/review-user">Review</NavLink>
+                    </NavItem>
+                  </span>
+                  : null
+                }
                 <NavItem>
-                  <NavLink tag={Link} className="text-dark" to="/fetch-users">Users</NavLink>
                 </NavItem>
-                <NavItem>
-                  <NavLink tag={Link} className="text-dark" to="/fetch-performances">Performances</NavLink>
-                </NavItem>
-                <NavItem>
-                  <NavLink tag={Link} className="text-dark" to="/review-user">Review</NavLink>
-                </NavItem>
+
                 <LoginMenu>
                 </LoginMenu>
               </ul>
