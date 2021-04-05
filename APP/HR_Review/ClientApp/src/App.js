@@ -24,7 +24,7 @@ export default class App extends Component {
         <Route path='/fetch-performances' component={FetchPerformances} />
         <Route path={ApplicationPaths.ApiAuthorizationPrefix} component={ApiAuthorizationRoutes} />
         <Route path='/users/edit/:id' component={AddUser} />
-        <Route path='/ReviewUser' component={ReviewUser} />
+        <Route path='/review-user' component={ReviewUser} />
         <Route path='/add-user' component={AddUser} />
         <Route path='/add-performance' component={AddPerformance} />
       </Layout>
